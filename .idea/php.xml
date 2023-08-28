@@ -113,6 +113,18 @@
       <path value="$PROJECT_DIR$/streamlab-backend/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/streamlab-backend/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/streamlab-backend/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/laravel/socialite" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/pragmarx/google2fa" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/laravel/fortify" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/laravel/jetstream" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/streamlab-backend/vendor/livewire/livewire" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
