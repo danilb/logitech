@@ -18,7 +18,7 @@
    * php artisan db:seed --class=MerchSalesTableSeeder
    
 ## Start backend 
- * php artisan --version
+ * php artisan serve
  
 ## Start frontend
  * npm start
