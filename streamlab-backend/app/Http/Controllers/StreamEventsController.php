@@ -8,6 +8,7 @@ use App\Models\Donation;
 use App\Models\MerchSale;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class StreamEventsController extends Controller
 {
@@ -77,6 +78,54 @@ class StreamEventsController extends Controller
         }
 
         return response()->json(['items' => $items]);
+    }
+
+    public function getUserStats(Request $request)
+    {
+        $userStats = [];
+
+        // 1) Total revenue from Donations, Subscriptions & Merch sales in the past 30 days
+        $totalRevenue = Donation::where('created_at', '<', Carbon::now()->subDays(30))
+            ->sum('amount');
+
+        $tier1Subscribers = Subscriber::where('created_at', '<', Carbon::now()->subDays(30))
+                ->where('subscription_tier', 1)
+                ->count() * 5;  // Tier1: $5
+
+        $tier2Subscribers = Subscriber::where('created_at', '<', Carbon::now()->subDays(30))
+                ->where('subscription_tier', 2)
+                ->count() * 10; // Tier2: $10
+
+        $tier3Subscribers = Subscriber::where('created_at', '<', Carbon::now()->subDays(30))
+                ->where('subscription_tier', 3)
+                ->count() * 15; // Tier3: $15
+
+        $totalRevenue += $tier1Subscribers + $tier2Subscribers + $tier3Subscribers;
+
+        $merchSalesRevenue = MerchSale::where('created_at', '<', Carbon::now()->subDays(30))
+            ->sum('amount');
+
+        $totalRevenue += $merchSalesRevenue;
+
+        $userStats['total_revenue'] = $totalRevenue;
+
+        // 2) Total amount of followers gained in the past 30 days
+        $totalFollowers = Follower::where('created_at', '<', Carbon::now()->subDays(30))
+            ->count();
+
+        $userStats['total_followers_gained'] = $totalFollowers;
+
+        // 3) Top 3 items that did the best sales in the past 30 days
+        $topItems = MerchSale::select('item_name', DB::raw('SUM(amount) as total_amount'))
+            ->where('created_at', '<', Carbon::now()->subDays(30))
+            ->groupBy('item_name')
+            ->orderByDesc('total_amount')
+            ->limit(3)
+            ->get();
+
+        $userStats['top_items'] = $topItems;
+
+        return response()->json($userStats);
     }
 }
 

@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/stream-events', [StreamEventsController::class, 'getStreamEvents']);
+Route::get('/user-stats', [StreamEventsController::class, 'getUserStats']);
