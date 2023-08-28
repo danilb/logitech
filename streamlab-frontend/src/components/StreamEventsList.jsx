@@ -56,17 +56,19 @@ const StreamEventsList = () => {
     return (
         <div className="stream-events-list">
             {items.map((streamEventGroup, index) => (
-                <div key={index} className="event-group">
+                (streamEventGroup[0].follower?.name || streamEventGroup[0].follower?.name || streamEventGroup[1].subscriber?.name
+                || streamEventGroup[3].merchSale?.follower_name)
+                 && <div key={index} className="event-group">
                     <div className="event">
-                        <div>{streamEventGroup[0]?.follower?.name} followed you!</div>
-                        <div>{streamEventGroup[1].subscriber?.name} ({streamEventGroup[1]?.subscriber?.tier}) subscribed on you!
-                        </div>
-                        <div>{streamEventGroup[2]?.donation?.follower_name} donated {streamEventGroup[2]?.donation?.amount}
-                            {streamEventGroup[2]?.donation?.currency} to you! “{streamEventGroup[2]?.donation?.message}”
-                        </div>
-                        <div>{streamEventGroup[3]?.merchSale?.follower_name} bought some {streamEventGroup[3]?.merchSale?.item_name}
-                            from you for {streamEventGroup[3]?.merchSale?.price} USD!
-                        </div>
+                        {streamEventGroup[0].follower?.name && <div>{streamEventGroup[0]?.follower?.name} followed you!</div>}
+                        {streamEventGroup[1].subscriber?.name && <div>{streamEventGroup[1].subscriber?.name} ({streamEventGroup[1]?.subscriber?.tier}) subscribed on you!
+                        </div>}
+                        {streamEventGroup[2].donation?.follower_name && <div>{streamEventGroup[2].donation?.follower_name} donated {streamEventGroup[2]?.donation?.amount}
+                            {streamEventGroup[2].donation?.currency} to you! “{streamEventGroup[2].donation?.message}”
+                        </div>}
+                        {streamEventGroup[3].merchSale?.follower_name && <div>{streamEventGroup[3].merchSale?.follower_name} bought some {streamEventGroup[3]?.merchSale?.item_name}
+                            from you for {streamEventGroup[3].merchSale?.price} USD!
+                        </div>}
                     </div>
                 </div>
             ))}
