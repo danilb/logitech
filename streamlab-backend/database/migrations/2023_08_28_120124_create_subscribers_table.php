@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('merch_sales', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name');
-            $table->integer('amount');
-            $table->decimal('price', 10, 2);
+            $table->foreignId('streamlab_id')->constrained('streamlabs_users');
+            $table->string('name');
+            $table->enum('subscription_tier', ['Tier1', 'Tier2', 'Tier3']);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('merch_sales');
+        Schema::dropIfExists('subscribers');
     }
 };

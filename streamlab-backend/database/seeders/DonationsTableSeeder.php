@@ -20,8 +20,13 @@ class DonationsTableSeeder extends Seeder
 
         $currencies = ['USD', 'EUR', 'GBP'];
 
+        $streamlabsUserIds = DB::table('streamlabs_users')->pluck('id');
+
         for ($i = 0; $i < rand(300, 500); $i++) {
+            $randomStreamlabsUserId = $streamlabsUserIds->random();
+
             DB::table('donations')->insert([
+                'streamlab_id' => $randomStreamlabsUserId,
                 'amount' => rand(10, 1000),
                 'currency' => $currencies[array_rand($currencies)],
                 'donation_message' => $messages[rand(0, 3)],

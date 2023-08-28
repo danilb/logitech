@@ -8,17 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('donations', function (Blueprint $table) {
+        Schema::create('followers', function (Blueprint $table) {
             $table->id();
-            $table->decimal('amount', 10, 2);
-            $table->string('currency');
-            $table->string('donation_message')->nullable();
+            $table->foreignId('streamlab_id')->constrained('streamlabs_users');
+            $table->string('name');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('donations');
+        Schema::dropIfExists('followers');
     }
 };

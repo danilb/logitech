@@ -8,15 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('followers', function (Blueprint $table) {
+        Schema::create('merch_sales', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('streamlab_id')->constrained('streamlabs_users');
+            $table->string('item_name');
+            $table->integer('amount');
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('followers');
+        Schema::dropIfExists('merch_sales');
     }
 };
