@@ -37,6 +37,7 @@ class StreamEventsController extends Controller
             if (sizeof($subscribers) > $i && $subscribers[$i] !== null) {
                 $subscriber = ['subscriber' => [
                     'name' => $subscribers[$i]->name,
+                    'tier' => $subscribers[$i]->subscription_tier,
                     'date_of_creation' => $subscribers[$i]->created_at,
                 ]];
             }

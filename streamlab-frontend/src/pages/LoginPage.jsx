@@ -20,7 +20,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="login-page">
+        <div className="header">
             <h2>Login Page</h2>
             <button onClick={handleLoginWithGoogle}>Login with Google</button>
         </div>

@@ -1,0 +1,37 @@
+.user-stats-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.user-stat {
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.header {
+    text-align: center;
+    background-color: lightskyblue;
+    padding: 10px;
+}
+
+.event-group {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px;
+    background-color: lightskyblue;
+}
+
+.event {
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 8px;
+}
