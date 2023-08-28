@@ -23,6 +23,11 @@ class StreamEventsController extends Controller
         $donations = Donation::orderBy('created_at')->offset($offset)->limit(100)->get();
         $merchSales = MerchSale::orderBy('created_at')->offset($offset)->limit(100)->get();
 
+        if (sizeof($followers) == 0 & sizeof($subscribers) == 0  & sizeof($donations) == 0
+            & sizeof($merchSales) == 0) {
+            return response()->json(['items' => '']);
+        }
+
         for ($i = 0; $i <= 99; $i++) {
 
             $follower = ['follower' => ''];
@@ -48,7 +53,7 @@ class StreamEventsController extends Controller
                 $donnationFollower = Follower::where('streamlab_id', $donations[$i]->streamlab_id)->first();
 
                 $donation = ['donation' => [
-                    'follower_name' => $donnationFollower ? $donnationFollower->name : 'hidden',
+                    'follower_name' => $donnationFollower ? $donnationFollower->name : 'Hidden User',
                     'date_of_creation' => $donations[$i]->created_at ?? null,
                     'message' => $donations[$i]->donation_message ?? null,
                     'amount' => $donations[$i]->amount ?? null,
@@ -62,13 +67,14 @@ class StreamEventsController extends Controller
                 $merchSaleFollower = Follower::where('streamlab_id', $merchSales[$i]->streamlab_id)->first();
 
                 $merchSale = ['merchSale' => [
-                    'follower_name' => $merchSaleFollower ? $merchSaleFollower->name : 'hidden',
+                    'follower_name' => $merchSaleFollower ? $merchSaleFollower->name : 'Hidden User',
                     'date_of_creation' => $merchSales[$i]->created_at ?? null,
                     'item_name' => $merchSales[$i]->item_name ?? null,
                     'amount' => $merchSales[$i]->amount ?? null,
                     'price' => $merchSales[$i]->price ?? null,
                 ]];
             }
+
 
             $items[] = [
                 $follower,

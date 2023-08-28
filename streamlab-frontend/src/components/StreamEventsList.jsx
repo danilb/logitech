@@ -40,7 +40,7 @@ const StreamEventsList = () => {
     useEffect(() => {
         const options = {
             root: null,
-            rootMargin: '20px',
+            rootMargin: '100px',
             threshold: 1.0,
         };
 
@@ -57,19 +57,17 @@ const StreamEventsList = () => {
         <div className="stream-events-list">
             {items.map((streamEventGroup, index) => (
                 <div key={index} className="event-group">
-                    {streamEventGroup.map((streamEvent, eventIndex) => (
-                        <div key={eventIndex} className="event">
-                            <div>{streamEvent?.follower?.name} followed you!</div>
-                            <div>{streamEvent?.subscriber?.name} ({streamEvent?.subscriber?.tier}) subscribed on you!
-                            </div>
-                            <div>{streamEvent?.donation?.follower_name} donated {streamEvent?.donation?.amount}
-                                {streamEvent?.donation?.currency} to you! “{streamEvent?.donation?.message}”
-                            </div>
-                            <div>{streamEvent?.merchSale?.follower_name} bought some {streamEvent?.merchSale?.item_name}
-                                from you for {streamEvent?.merchSale?.price} USD!
-                            </div>
+                    <div className="event">
+                        <div>{streamEventGroup[0]?.follower?.name} followed you!</div>
+                        <div>{streamEventGroup[1].subscriber?.name} ({streamEventGroup[1]?.subscriber?.tier}) subscribed on you!
                         </div>
-                    ))}
+                        <div>{streamEventGroup[2]?.donation?.follower_name} donated {streamEventGroup[2]?.donation?.amount}
+                            {streamEventGroup[2]?.donation?.currency} to you! “{streamEventGroup[2]?.donation?.message}”
+                        </div>
+                        <div>{streamEventGroup[3]?.merchSale?.follower_name} bought some {streamEventGroup[3]?.merchSale?.item_name}
+                            from you for {streamEventGroup[3]?.merchSale?.price} USD!
+                        </div>
+                    </div>
                 </div>
             ))}
             <div id="observer"/>

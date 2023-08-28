@@ -23,15 +23,13 @@
 .event-group {
     text-align: center;
     padding: 20px;
-    border-radius: 10px;
     margin: 30px;
-    background-color: lightskyblue;
+    background-color: antiquewhite;
 }
 
 .event {
     text-align: center;
-    border: 1px solid #ccc;
-    background-color: lightblue;
+    background-color: cornsilk;
     padding: 10px;
     border-radius: 8px;
 }
