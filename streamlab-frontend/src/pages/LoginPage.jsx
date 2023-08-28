@@ -1,6 +1,10 @@
 import React from 'react';
+import {useNavigate} from "react-router";
 
 const LoginPage = () => {
+
+    const navigate = useNavigate();
+
     const handleLoginWithGoogle = () => {
         const popup = window.open('http://localhost:8000/auth/google', 'Google Login', 'width=800,height=600');
 
@@ -10,6 +14,7 @@ const LoginPage = () => {
                 console.log('Received message from popup:', event.data);
                 // Close the popup window
                 popup.close();
+                navigate('/userpage', { state: { name: event.data.name, success: event.data.success } });
             }
         });
     };
